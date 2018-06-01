@@ -4,7 +4,7 @@ var app = express()
 var cors = require('cors')
 var port = process.env.PORT  || 3000
 
-
+let server = require('http').createServer(app)
 app.use("*", express.static(__dirname + "../www/dist"))
 
 var whitelist = ['http://localhost:8080', 'https://music-demo.herokuapp.com'];
