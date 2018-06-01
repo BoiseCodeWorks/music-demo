@@ -1,6 +1,7 @@
 var express = require('express')
 var bp = require('body-parser')
 var app = express()
+let server = require('http').createServer(app)
 var cors = require('cors')
 var port = process.env.PORT  || 3000
 
@@ -17,8 +18,8 @@ app.use(cors(corsOptions))
 
 require('./server-assets/db/mlab-config')
 
-let server = require('http').createServer(app)
-app.use(express.static(__dirname + "../www/dist"))
+
+app.use(express.static(__dirname + "/../www/dist"))
 
 app.use(bp.json())
 app.use(bp.urlencoded({
