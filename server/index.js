@@ -4,13 +4,11 @@ var app = express()
 var cors = require('cors')
 var port = process.env.PORT  || 3000
 
-let server = require('http').createServer(app)
-app.use(express.static(__dirname + "../www/dist"))
 
 var whitelist = ['http://localhost:8080', 'https://music-demo.herokuapp.com'];
 var corsOptions = {
-	origin: function (origin, callback) {
-		var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+  origin: function (origin, callback) {
+    var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
 		callback(null, originIsWhitelisted);
 	},
 	credentials: true
@@ -18,6 +16,9 @@ var corsOptions = {
 app.use(cors(corsOptions))
 
 require('./server-assets/db/mlab-config')
+
+let server = require('http').createServer(app)
+app.use(express.static(__dirname + "../www/dist"))
 
 app.use(bp.json())
 app.use(bp.urlencoded({
