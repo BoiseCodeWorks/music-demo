@@ -2,13 +2,17 @@ import vue from 'vue'
 import vuex from 'vuex'
 import axios from 'axios'
 
+
+var production = !window.location.host.includes('localhost');
+var baseUrl = production ? '//music-demo.herokuapp.com/' : '//localhost:3000/';
+
 let itunesApi = axios.create({
   baseURL: 'https://itunes.apple.com/search?media=music&term=',
   timeout: 3000
 })
 
 let myTunes = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: baseUrl + 'api/',
   timeout: 3000
 })
 
